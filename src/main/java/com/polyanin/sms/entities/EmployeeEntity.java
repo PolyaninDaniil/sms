@@ -1,58 +1,35 @@
 package com.polyanin.sms.entities;
 
+import com.polyanin.sms.dto.EmployeeDTOin;
+import java.util.List;
 import javax.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Table(name = "employee")
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+
 public class EmployeeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String firstName;
     private String secondName;
     private Integer age;
 
-    public EmployeeEntity() {
-    }
+    @ManyToMany
+    private List<ProjectEntity> projects;
 
-    public EmployeeEntity(Long id, String firstName, String secondName, Integer age) {
-        this.id = id;
-        this.firstName = firstName;
-        this.secondName = secondName;
-        this.age = age;
-    }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getSecondName() {
-        return secondName;
-    }
-
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
+    public EmployeeEntity(EmployeeDTOin employeeDTOin, List<ProjectEntity> projects) {
+        this.firstName = employeeDTOin.getFirstName();
+        this.secondName = employeeDTOin.getSecondName();
+        this.age = employeeDTOin.getAge();
+        this.projects = projects;
     }
 }

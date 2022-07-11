@@ -10,5 +10,6 @@ spring:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     database: mysql
 
-    hibernate:
-      ddl-auto: update
+  liquibase:
+    change-log: classpath:liquibase/master.xml
+    contexts: "develop"
