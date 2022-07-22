@@ -14,6 +14,6 @@ public class ProjectDTOin {
     private String name;
     private Timestamp endDate;
     private ProjectType type;
-    private List<EmployeeEntity> employees;
+    private List<Long> employees;
 
 }

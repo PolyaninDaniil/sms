@@ -1,5 +1,6 @@
 package com.polyanin.sms.entities;
 
+import com.polyanin.sms.dto.ProjectDTOin;
 import java.sql.Timestamp;
 import java.util.List;
 import javax.persistence.Entity;
@@ -26,6 +27,7 @@ public class ProjectEntity {
     private String name;
     private Timestamp endDate;
     private ProjectType type;
+    private Long benefit;
 
     @ManyToMany(mappedBy = "projects")
     private List<EmployeeEntity> employees;
@@ -37,5 +39,12 @@ public class ProjectEntity {
         IT,
         PR,
         MARKETING
+    }
+
+    public ProjectEntity(ProjectDTOin projectDTOin) {
+        this.name = projectDTOin.getName();
+        this.endDate = projectDTOin.getEndDate();
+        this.type = projectDTOin.getType();
+
     }
 }

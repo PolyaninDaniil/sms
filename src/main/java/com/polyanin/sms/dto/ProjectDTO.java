@@ -19,12 +19,6 @@ public class ProjectDTO {
     private ProjectType type;
     private List<EmployeeSlimDTO> employees;
 
-    public ProjectDTO(ProjectEntity project) {
-        setEndDate(project.getEndDate());
-        setName(project.getName());
-        setType(project.getType());
-        setId(project.getId());
-        setEmployees(project.getEmployees().stream().map(EmployeeSlimDTO::new).collect(Collectors.toList()));
-    }
+
 
 }

@@ -21,6 +21,8 @@ public class EmployeeEntity {
     private String firstName;
     private String secondName;
     private Integer age;
+    private Long salary;
+    private Long salaryBonus;
 
     @ManyToMany
     private List<ProjectEntity> projects;

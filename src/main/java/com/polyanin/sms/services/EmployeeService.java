@@ -5,13 +5,17 @@ import com.polyanin.sms.entities.EmployeeEntity;
 import com.polyanin.sms.entities.ProjectEntity;
 import com.polyanin.sms.exceptions.SmsException;
 import com.polyanin.sms.repositories.EmployeeRepository;
+import java.util.stream.Collectors;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Slf4j
 public class EmployeeService {
 
     @Autowired
@@ -20,9 +24,6 @@ public class EmployeeService {
     @Autowired
     private ProjectService projectService;
 
-//    public ProjectEntity getProjectByID(Long id) {
-//        return projectService.getProjectById(id);
-//    }
 
     public List<EmployeeEntity> getAllEmployees() {
         return employeeRepository.findAll();
@@ -37,6 +38,7 @@ public class EmployeeService {
         return employeeRepository.save(new EmployeeEntity(employeeDTOin, projectService.getProjectsByIds(employeeDTOin.getProjects())));
     }
 
+
     public void deleteEmployeeByID (Long id) {
        employeeRepository.deleteById(id);
     }
@@ -49,6 +51,7 @@ public class EmployeeService {
         employeeEntity.setAge(employeeDTOin.getAge());
         return employeeRepository.save(employeeEntity);
     }
+
 
 
 }

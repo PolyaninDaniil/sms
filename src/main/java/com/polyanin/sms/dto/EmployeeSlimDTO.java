@@ -17,11 +17,5 @@ public class EmployeeSlimDTO {
     private String secondName;
     private Integer age;
 
-    public EmployeeSlimDTO (EmployeeEntity employee) {
-        setFirstName(employee.getFirstName());
-        setSecondName(employee.getSecondName());
-        setAge(employee.getAge());
-        setId(employee.getId());
-//        setProjects(employee.getProjects().stream().map(ProjectSlimDTO::new).collect(Collectors.toList()));
-    }
+
 }

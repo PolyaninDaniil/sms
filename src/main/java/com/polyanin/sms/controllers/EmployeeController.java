@@ -3,6 +3,7 @@ package com.polyanin.sms.controllers;
 import com.polyanin.sms.dto.EmployeeDTO;
 import com.polyanin.sms.dto.EmployeeDTOin;
 import com.polyanin.sms.dto.EmployeeSlimDTO;
+import com.polyanin.sms.dtoconverter.DTOConverter;
 import com.polyanin.sms.entities.EmployeeEntity;
 import com.polyanin.sms.services.EmployeeService;
 import com.polyanin.sms.services.ProjectService;
@@ -26,21 +27,22 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-
+    @Autowired
+    private DTOConverter dtoConverter;
 
     @GetMapping
     public List<EmployeeDTO> getAllEmployees() {
-        return employeeService.getAllEmployees().stream().map(EmployeeDTO::new).collect(Collectors.toList());
+        return dtoConverter.simpleConvert(employeeService.getAllEmployees(), EmployeeDTO.class);
     }
 
     @GetMapping("/{id}")
     public EmployeeDTO getEmployeeById(@PathVariable Long id) {
-        return new EmployeeDTO(employeeService.getEmployeeById(id));
+        return dtoConverter.simpleConvert(employeeService.getEmployeeById(id), EmployeeDTO.class);
     }
 
     @PostMapping
     public EmployeeDTO createEmployee(@RequestBody EmployeeDTOin employeeDTOin) {
-        return new EmployeeDTO(employeeService.createEmployee(employeeDTOin));
+        return dtoConverter.simpleConvert(employeeService.createEmployee(employeeDTOin), EmployeeDTO.class);
     }
 
     @DeleteMapping("/{id}")

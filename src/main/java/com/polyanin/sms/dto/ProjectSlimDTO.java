@@ -16,10 +16,4 @@ public class ProjectSlimDTO {
     private Timestamp endDate;
     private ProjectType type;
 
-    public ProjectSlimDTO(ProjectEntity project) {
-        setEndDate(project.getEndDate());
-        setName(project.getName());
-        setType(project.getType());
-        setId(project.getId());
-    }
 }
